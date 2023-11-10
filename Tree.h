@@ -20,7 +20,10 @@ void print_node_pre(Node* node);
 void print_node_post(Node* node);
 void print_node_in(Node* node);
 
-int node_dump_graph(Node* node);
+int graph_dump(const Tree* tree);
+void node_graph_dump(Node* node, FILE* dotfile);
+void edge_graph_dump(Node* node, FILE* dotfile);
+
 int node_dump_txt(Node* node);
 
 Tree* tree_ctor(Node* root, size_t size);

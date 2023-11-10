@@ -22,6 +22,8 @@ int main () {
     printf("\n\n");
 
     add_node(tree0, tree0->root, 12);
+    add_node(tree0, tree0->root, 18);
+    add_node(tree0, tree0->root, 3);
 
     //print_node_pre(tree0->root);
     //printf("\n\n");
@@ -29,6 +31,8 @@ int main () {
     //printf("\n\n");
     print_node_in(tree0->root);
     printf("\n\n");
+
+    graph_dump(tree0);
 
     tree_dtor(tree0);
 
