@@ -31,43 +31,43 @@ int node_dtor(Node* node) {
     return 0;
 }
 
-void print_node_pre(Node* node) {
+void print_node_pre(Node* node, FILE* output) {
 
     if (node == 0) {
-        printf(" nil ");
+        fprintf(output, " nil ");
         return;
     }
-    printf(" ( ");
-    printf(" %d ", node->data);
-    print_node_pre(node->left);
-    print_node_pre(node->right);
-    printf(" ) ");
+    fprintf(output, " ( ");
+    fprintf(output, " %d ", node->data);
+    print_node_pre(node->left, output);
+    print_node_pre(node->right, output);
+    fprintf(output, " ) ");
 }
 
-void print_node_post(Node* node) {
+void print_node_post(Node* node, FILE* output) {
 
     if (node == 0) {
-        printf(" nil ");
+        fprintf(output, " nil ");
         return;
     }
-    printf(" ( ");
-    print_node_post(node->left);
-    print_node_post(node->right);
-    printf(" %d ", node->data);
-    printf(" ) ");
+    fprintf(output, " ( ");
+    print_node_post(node->left, output);
+    print_node_post(node->right, output);
+    fprintf(output, " %d ", node->data);
+    fprintf(output, " ) ");
 }
 
-void print_node_in(Node* node) {
+void print_node_in(Node* node, FILE* output) {
 
     if (node == 0) {
-        printf(" nil ");
+        fprintf(output, " nil ");
         return;
     }
-    printf(" ( ");
-    print_node_in(node->left);
-    printf(" %d ", node->data);
-    print_node_in(node->right);
-    printf(" ) ");
+    fprintf(output, " ( ");
+    print_node_in(node->left, output);
+    fprintf(output, " %d ", node->data);
+    print_node_in(node->right, output);
+    fprintf(output, " ) ");
 }
 
 
@@ -169,6 +169,8 @@ void edge_graph_dump(Node* node, FILE* dotfile) {
         edge_graph_dump(node->right, dotfile);
     }
 }
+
+
 
 
 
