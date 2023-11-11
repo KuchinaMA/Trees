@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <strings.h>
 
 #include "Tree.h"
 
@@ -24,7 +25,7 @@ int node_dtor(Node* node) {
 
     node->left = 0;
     node->right = 0;
-    node->data = TREEPOISON;
+    node->data = TREE_POISON;
 
     free(node);
 
@@ -34,40 +35,40 @@ int node_dtor(Node* node) {
 void print_node_pre(Node* node, FILE* output) {
 
     if (node == 0) {
-        fprintf(output, " nil ");
+        fprintf(output, "nil ");
         return;
     }
-    fprintf(output, " ( ");
-    fprintf(output, " %d ", node->data);
+    fprintf(output, "( ");
+    fprintf(output, "%d ", node->data);
     print_node_pre(node->left, output);
     print_node_pre(node->right, output);
-    fprintf(output, " ) ");
+    fprintf(output, ") ");
 }
 
 void print_node_post(Node* node, FILE* output) {
 
     if (node == 0) {
-        fprintf(output, " nil ");
+        fprintf(output, "nil ");
         return;
     }
-    fprintf(output, " ( ");
+    fprintf(output, "( ");
     print_node_post(node->left, output);
     print_node_post(node->right, output);
-    fprintf(output, " %d ", node->data);
-    fprintf(output, " ) ");
+    fprintf(output, "%d ", node->data);
+    fprintf(output, ") ");
 }
 
 void print_node_in(Node* node, FILE* output) {
 
     if (node == 0) {
-        fprintf(output, " nil ");
+        fprintf(output, "nil ");
         return;
     }
-    fprintf(output, " ( ");
+    fprintf(output, "( ");
     print_node_in(node->left, output);
-    fprintf(output, " %d ", node->data);
+    fprintf(output, "%d ", node->data);
     print_node_in(node->right, output);
-    fprintf(output, " ) ");
+    fprintf(output, ") ");
 }
 
 
@@ -169,6 +170,71 @@ void edge_graph_dump(Node* node, FILE* dotfile) {
         edge_graph_dump(node->right, dotfile);
     }
 }
+
+
+Node* read_node(FILE* file) {
+
+    int number = 0;
+    char current[MAX_LINE_LEN] = "";
+
+    Node* node = (Node*)calloc(1, sizeof(Node));
+
+    fscanf(file, "%d", &number);
+    printf("%d\n", number);
+    node->data = number;
+
+    fscanf(file, "%s", current);
+    if (strcmp("(", current) == 0) {
+
+        printf("open %s\n", current);
+        node->left = read_node(file);
+    }
+
+    else if (strcmp("nil", current) == 0) {
+
+        printf("nils %s\n", current);
+        node->left = 0;
+    }
+
+    else
+        printf("Syntax error!\n");
+
+
+    fscanf(file, "%s", current);
+    if (strcmp("(", current) == 0) {
+
+        printf("open %s\n", current);
+        node->right = read_node(file);
+    }
+
+    else if (strcmp("nil", current) == 0) {
+
+        printf("nil %s\n", current);
+        node->right = 0;
+    }
+
+    else
+        printf("Syntax error!\n");
+
+
+    fscanf(file, "%s", current); //закрывающая скобка
+    printf("data: %d\n", node->data);
+
+    return node;
+}
+
+Node* read_data(FILE* file) {
+
+    char current[MAX_LINE_LEN] = "";
+
+    fscanf(file, "%s", current); //открывающая скобка
+    printf("open %s\n", current);
+
+    Node* new_node = read_node(file);
+
+    return new_node;
+}
+
 
 
 

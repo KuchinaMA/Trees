@@ -1,4 +1,1 @@
- (  (  nil  5  nil  )  10  (  (  nil  15  nil  )  17  (  nil  20  nil  )  )  ) 
- (  10  (  5  (  3  nil  nil  )  nil  )  (  17  (  15  (  12  nil  nil  )  nil  )  (  20  (  18  nil  nil  )  nil  )  )  ) 
- (  (  (  nil  nil  3  )  nil  5  )  (  (  (  nil  nil  12  )  nil  15  )  (  (  nil  nil  18  )  nil  20  )  17  )  10  ) 
- (  (  (  nil  3  nil  )  5  nil  )  10  (  (  (  nil  12  nil  )  15  nil  )  17  (  (  nil  18  nil  )  20  nil  )  )  ) 
+( 10 ( 5 ( 3 nil nil ) nil ) ( 17 ( 15 ( 12 nil nil ) nil ) ( 20 nil ( 23 nil nil ) ) ) ) 
