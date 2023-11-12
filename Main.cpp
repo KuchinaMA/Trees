@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "Tree.h"
+#include "TreeDump.h"
 
 int main () {
 

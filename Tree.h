@@ -27,10 +27,6 @@ void print_node_pre(Node* node, FILE* output);
 void print_node_post(Node* node, FILE* output);
 void print_node_in(Node* node, FILE* output);
 
-int graph_dump(const Tree* tree);
-void node_graph_dump(Node* node, FILE* dotfile);
-void edge_graph_dump(Node* node, FILE* dotfile);
-
 Node* read_node(FILE* file);
 Node* read_data(FILE* file);
 

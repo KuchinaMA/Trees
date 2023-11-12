@@ -8,14 +8,17 @@ CFLAGS = -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equ
 
 all: TreeRes.exe
 
-TreeRes.exe: Main.o Tree.o
+TreeRes.exe: Main.o Tree.o TreeDump.o
 	$(CC) $(CFLAGS) $^ -o $@
 
-Main.o: Main.cpp Tree.h  
+Main.o: Main.cpp Tree.h TreeDump.h  
 	$(CC) $(CFLAGS) $< -c -o $@
 
 Tree.o: Tree.cpp Tree.h
 	$(CC) $(CFLAGS) $< -c -o $@
+
+TreeDump.o: TreeDump.cpp Tree.h TreeDump.h
+	$(CC) $(CFLAGS) $< -c -o $@ 
 
 .PHONY: all clean
 
