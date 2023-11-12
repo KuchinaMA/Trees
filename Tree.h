@@ -1,13 +1,6 @@
 #ifndef TREE_H_INCLUDED
 #define TREE_H_INCLUDED
 
-#define check_simbol(symbol)                              \
-    fscanf(pfile, "%c", &check_symbol);                   \
-    if (check_symbol != symbol) {                         \
-        printf("syntax error %c\n", check_symbol);        \
-        return 0;                                         \
-    }
-
 const int TREE_POISON = -555;
 const size_t MAX_LINE_LEN = 1000;
 
